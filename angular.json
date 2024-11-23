@@ -3,5 +3,38 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
+    "http-client-with-recaptcha": {
+      "projectType": "library",
+      "root": "projects/http-client-with-recaptcha",
+      "sourceRoot": "projects/http-client-with-recaptcha/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/http-client-with-recaptcha/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/http-client-with-recaptcha/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/http-client-with-recaptcha/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/http-client-with-recaptcha/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    }
   }
 }

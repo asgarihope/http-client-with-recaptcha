@@ -1,0 +1,7 @@
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../dist/http-client-with-recaptcha",
+  "lib": {
+    "entryFile": "src/public-api.ts"
+  }
+}

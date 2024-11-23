@@ -1,27 +1,177 @@
-# MyWorkspace
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.3.
+# `http-client-with-recaptcha` - Angular Service for HTTP Requests with reCAPTCHA v3 Integration
 
-## Development server
+## 🚀 Introduction
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Welcome to `http-client-with-recaptcha`, an Angular service designed to seamlessly integrate Google's reCAPTCHA v3 into your HTTP requests. This service allows you to attach reCAPTCHA tokens to headers in your HTTP requests, ensuring secure interactions with your API endpoints.
 
-## Code scaffolding
+With this package, you can easily incorporate reCAPTCHA protection without worrying about manual token management, all while keeping your code clean and maintainable.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+---
 
-## Build
+## 📦 Features
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- **Easy Integration**: Add reCAPTCHA protection to HTTP requests in Angular effortlessly.
+- **Customizable Header Name**: Set the reCAPTCHA token header name globally for your application.
+- **Flexible HTTP Methods**: Supports `GET`, `POST`, and any other HTTP method, while automatically including reCAPTCHA tokens in headers.
+- **Seamless reCAPTCHA v3 Integration**: Works directly with Google's invisible reCAPTCHA v3.
+- **Configurable**: Easily customize token handling and header names via Angular's dependency injection.
 
-## Running unit tests
+---
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## 🔧 Installation
 
-## Running end-to-end tests
+### 1. Install Dependencies
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Add this library (`http-client-with-recaptcha`) to your project:
 
-## Further help
+```bash
+npm install http-client-with-recaptcha --save
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### 2. Import the Module
+
+In your Angular module (`app.module.ts`), import the `HttpClientWithRecaptchaModule` and include it in the `imports` array.
+
+```typescript
+import { HttpClientWithRecaptchaModule } from 'http-client-with-recaptcha';
+
+@NgModule({
+  imports: [
+    HttpClientWithRecaptchaModule,
+    // other imports...
+  ],
+  // other properties...
+})
+export class AppModule {}
+```
+
+---
+
+## 🧩 Usage
+
+### Step 1: Inject the Service
+
+Inject the `HttpClientWithRecaptcha` service into your component or service:
+
+```typescript
+import { HttpClientWithRecaptcha } from 'http-client-with-recaptcha';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class MyService {
+  constructor(private httpClientWithRecaptcha: HttpClientWithRecaptcha) {}
+
+  fetchData() {
+    return this.httpClientWithRecaptcha
+      .withRecaptcha('login') // 'login' is a reCAPTCHA v3 action
+      .get('https://example.com/api');
+  }
+}
+```
+
+### Step 2: Customize the Header (Optional)
+
+You can customize the reCAPTCHA token header globally in your `AppModule`:
+
+```typescript
+import { RECAPTCHA_HEADER_NAME } from 'http-client-with-recaptcha';
+
+@NgModule({
+  providers: [
+    {
+      provide: RECAPTCHA_HEADER_NAME,
+      useValue: 'X-Custom-Recaptcha-Token', // Customize header name
+    },
+  ],
+})
+export class AppModule {}
+```
+
+---
+
+## 🌍 Configuration
+
+### Dynamic Header Name
+
+By default, the service uses `X-Recaptcha-Token` as the header name, but you can configure it globally through Angular's dependency injection system.
+
+```typescript
+import { RECAPTCHA_HEADER_NAME } from 'http-client-with-recaptcha';
+
+@NgModule({
+  providers: [
+    {
+      provide: RECAPTCHA_HEADER_NAME,
+      useValue: 'X-Dynamic-Recaptcha-Token', // Set dynamic header name
+    },
+  ],
+})
+export class AppModule {}
+```
+
+---
+
+## ⚙️ Methods
+
+### `withRecaptcha(action: string): HttpClientWithRecaptcha`
+
+- **Description**: Attach a reCAPTCHA token to the HTTP request header.
+- **Parameters**:
+  - `action`: The action string for reCAPTCHA v3 (e.g., `login`, `signup`).
+- **Returns**: An instance of `HttpClientWithRecaptcha` for chaining.
+
+### `get<T>(url: string, options: any): Observable<T>`
+
+- **Description**: Perform a `GET` request with reCAPTCHA protection.
+- **Parameters**:
+  - `url`: The API endpoint to send the GET request.
+  - `options`: Optional additional HTTP options.
+- **Returns**: An observable of the HTTP response.
+
+### `post<T>(url: string, body: any, options: any): Observable<T>`
+
+- **Description**: Perform a `POST` request with reCAPTCHA protection.
+- **Parameters**:
+  - `url`: The API endpoint to send the POST request.
+  - `body`: The body data for the POST request.
+  - `options`: Optional additional HTTP options.
+- **Returns**: An observable of the HTTP response.
+
+---
+
+## 📌 Why Use This Service?
+
+- **Security First**: reCAPTCHA ensures that requests are coming from human users and helps prevent bot attacks.
+- **Seamless Integration**: Automatically handles reCAPTCHA token inclusion for every HTTP request, so you don’t have to manage tokens manually.
+- **Customizable**: Easily change header names and reCAPTCHA action types according to your needs.
+- **Angular 17+ Compatible**: This package supports Angular version 17 and above, ensuring that your app stays up to date with the latest Angular features.
+
+---
+
+## 🎨 Contributing
+
+We welcome contributions from the community! If you have a bug fix, feature request, or improvement, please fork the repository and submit a pull request. Here’s how:
+
+1. Fork the repository.
+2. Clone your fork and create a new branch (`git checkout -b feature-branch`).
+3. Commit your changes (`git commit -am 'Add new feature'`).
+4. Push to your branch (`git push origin feature-branch`).
+5. Open a pull request with a detailed explanation of your changes.
+
+---
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 💬 Get in Touch
+
+For questions, support, or feedback, feel free to contact us at [asgarihope@gmail.com](mailto:your-email@example.com).
+
+---
+
+**Thank you for using `http-client-with-recaptcha`!** 😊

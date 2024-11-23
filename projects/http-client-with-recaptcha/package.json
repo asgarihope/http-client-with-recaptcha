@@ -1,0 +1,15 @@
+{
+  "name": "http-client-with-recaptcha",
+  "version": "1.0.0",
+  "peerDependencies": {
+    "@angular/common": "^17.0.0",
+    "@angular/core": "^17.0.0",
+    "ng-recaptcha": "^13.2.1"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false,
+  "author": "Omid Asgari",
+  "license": "MIT"
+}
