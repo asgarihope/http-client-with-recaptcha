@@ -1,14 +1,16 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../out-tsc/lib",
+    "outDir": "../../dist/out-tsc/lib",
     "declaration": true,
     "declarationMap": true,
-    "inlineSources": true,
+    "emitDecoratorMetadata": true,
+    "target": "es2020",
+    "module": "es2020",
     "types": []
   },
-  "exclude": [
-    "**/*.spec.ts"
-  ]
+  "angularCompilerOptions": {
+    "enableIvy": true
+  },
+  "exclude": ["src/test.ts", "**/*.spec.ts"]
 }

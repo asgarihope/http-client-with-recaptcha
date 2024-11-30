@@ -1,28 +1,25 @@
-import {Inject, InjectionToken, NgModule} from '@angular/core';
-import {RecaptchaV3Module, ReCaptchaV3Service} from 'ng-recaptcha';
-import {HttpClientWithRecaptcha} from "./http-client-with-recaptcha.service";
-
-export const RECAPTCHA_V3_SITE_KEY = new InjectionToken<string>('RECAPTCHA_V3_SITE_KEY');
+import {Inject, NgModule} from '@angular/core';
+import {HttpClientWithRecaptchaService} from "./http-client-with-recaptcha.service";
+import {RecaptchaV3Module, RECAPTCHA_V3_SITE_KEY, ReCaptchaV3Service} from "ng-recaptcha";
+import {RECAPTCHA_HEADER_NAME, RECAPTCHA_V3_KEY} from "./app-config.tokens";
 
 @NgModule({
   imports: [RecaptchaV3Module],
-  providers:[
-    HttpClientWithRecaptcha,
+  exports: [],
+  providers: [
+    HttpClientWithRecaptchaService,
+    RecaptchaV3Module,
     ReCaptchaV3Service,
     {
-      provide: RECAPTCHA_V3_SITE_KEY,
-      useFactory: () => {
-        const siteKey = ''; // In a real scenario, you could fetch from an environment variable
-        if (!siteKey) {
-          throw new Error('RECAPTCHA site key is not configured!');
-        }
-        return siteKey;
-      }
-    },
-  ],
+      provide: RECAPTCHA_V3_SITE_KEY,  // This injects the site key into ng-recaptcha
+      useExisting: RECAPTCHA_V3_KEY,  // Pass the value of your custom token to ng-recaptcha
+    }
+  ]
 })
 export class HttpClientWithRecaptchaModule {
-  constructor(@Inject(RECAPTCHA_V3_SITE_KEY) private siteKey: string) {
+
+  constructor(@Inject(RECAPTCHA_HEADER_NAME) private siteKey: string) {
+    console.log(siteKey)
     if (!this.siteKey) {
       console.error('No reCAPTCHA site key provided. Please configure the RECAPTCHA_V3_SITE_KEY.');
     }

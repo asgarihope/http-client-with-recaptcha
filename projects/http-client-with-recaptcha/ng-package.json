@@ -3,5 +3,6 @@
   "dest": "../../dist/http-client-with-recaptcha",
   "lib": {
     "entryFile": "src/public-api.ts"
-  }
+  },
+  "allowedNonPeerDependencies": ["ng-recaptcha"]
 }

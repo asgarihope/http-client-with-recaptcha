@@ -38,7 +38,16 @@ import { HttpClientWithRecaptchaModule } from 'http-client-with-recaptcha';
 
 @NgModule({
   imports: [
-    HttpClientWithRecaptchaModule,
+    importProvidersFrom(HttpClientWithRecaptchaModule),
+    {
+      provide:  RECAPTCHA_V3_KEY,
+      useValue: environment.reCaptchaV3Token,  // Replace with an actual site key or inject dynamically
+    },
+
+    {
+      provide:  RECAPTCHA_HEADER_NAME,
+      useValue: 'recaptchaaaaaa',  // Replace with an actual site key or inject dynamically
+    },
     // other imports...
   ],
   // other properties...
@@ -64,9 +73,11 @@ export class MyService {
   constructor(private httpClientWithRecaptcha: HttpClientWithRecaptcha) {}
 
   fetchData() {
-    return this.httpClientWithRecaptcha
-      .withRecaptcha('login') // 'login' is a reCAPTCHA v3 action
-      .get('https://example.com/api');
+    return this.http.post<YOUR_INTERFACE>(
+      'https://example.com/api',
+      {__BODY__},
+      'login' // 'login' is a reCAPTCHA v3 action
+    );
   }
 }
 ```
@@ -82,7 +93,7 @@ import { RECAPTCHA_HEADER_NAME } from 'http-client-with-recaptcha';
   providers: [
     {
       provide: RECAPTCHA_HEADER_NAME,
-      useValue: 'X-Custom-Recaptcha-Token', // Customize header name
+      useValue: 'X-YOUR-Recaptcha-V3-Token', // Customize header name
     },
   ],
 })
@@ -104,7 +115,7 @@ import { RECAPTCHA_HEADER_NAME } from 'http-client-with-recaptcha';
   providers: [
     {
       provide: RECAPTCHA_HEADER_NAME,
-      useValue: 'X-Dynamic-Recaptcha-Token', // Set dynamic header name
+      useValue: 'X-Your-Recaptcha-Token', // Set dynamic header name
     },
   ],
 })
@@ -156,7 +167,7 @@ We welcome contributions from the community! If you have a bug fix, feature requ
 
 1. Fork the repository.
 2. Clone your fork and create a new branch (`git checkout -b feature-branch`).
-3. Commit your changes (`git commit -am 'Add new feature'`).
+3. Commit your changes (`git commit -am '[FEATURE] Add new feature'`).
 4. Push to your branch (`git push origin feature-branch`).
 5. Open a pull request with a detailed explanation of your changes.
 
@@ -170,7 +181,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 💬 Get in Touch
 
-For questions, support, or feedback, feel free to contact us at [asgarihope@gmail.com](mailto:your-email@example.com).
+For questions, support, or feedback, feel free to contact us at [asgarihope@gmail.com](mailto:asgarihope@gmail.com).
 
 ---
 
