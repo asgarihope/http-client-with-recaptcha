@@ -157,7 +157,7 @@ export class AppModule {}
 - **Security First**: reCAPTCHA ensures that requests are coming from human users and helps prevent bot attacks.
 - **Seamless Integration**: Automatically handles reCAPTCHA token inclusion for every HTTP request, so you don’t have to manage tokens manually.
 - **Customizable**: Easily change header names and reCAPTCHA action types according to your needs.
-- **Angular 17+ Compatible**: This package supports Angular version 17 and above, ensuring that your app stays up to date with the latest Angular features.
+- **Angular 15+ Compatible**: This package supports Angular version 15 and above, ensuring that your app stays up to date with the latest Angular features.
 
 ---
 

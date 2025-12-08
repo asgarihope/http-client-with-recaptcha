@@ -8,7 +8,6 @@ import {RECAPTCHA_HEADER_NAME, RECAPTCHA_V3_KEY} from "./app-config.tokens";
   exports: [],
   providers: [
     HttpClientWithRecaptchaService,
-    RecaptchaV3Module,
     ReCaptchaV3Service,
     {
       provide: RECAPTCHA_V3_SITE_KEY,  // This injects the site key into ng-recaptcha

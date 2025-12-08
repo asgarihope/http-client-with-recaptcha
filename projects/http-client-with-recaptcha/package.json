@@ -2,8 +2,8 @@
   "name": "http-client-with-recaptcha",
   "version": "1.0.0",
   "peerDependencies": {
-    "@angular/common": "^17.0.0",
-    "@angular/core": "^17.0.0"
+    "@angular/common": "^15.0.0",
+    "@angular/core": "^15.0.0"
   },
   "description": "Angular service for HTTP client with reCAPTCHA support",
   "repository": {
