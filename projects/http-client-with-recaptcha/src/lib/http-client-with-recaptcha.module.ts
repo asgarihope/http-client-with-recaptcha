@@ -18,7 +18,6 @@ import {RECAPTCHA_HEADER_NAME, RECAPTCHA_V3_KEY} from "./app-config.tokens";
 export class HttpClientWithRecaptchaModule {
 
   constructor(@Inject(RECAPTCHA_V3_KEY) private siteKey: string) {
-    console.log(siteKey)
     if (!this.siteKey) {
       console.error('No reCAPTCHA site key provided. Please configure the RECAPTCHA_V3_KEY.');
     }
