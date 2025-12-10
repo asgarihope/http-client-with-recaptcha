@@ -1,6 +1,6 @@
 {
   "name": "http-client-with-recaptcha",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "peerDependencies": {
     "@angular/common": "^15.0.0",
     "@angular/core": "^15.0.0"
